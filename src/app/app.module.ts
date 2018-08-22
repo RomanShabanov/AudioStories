@@ -3,23 +3,34 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
+
 import { TabsPage } from '../pages/tabs/tabs';
+import { LibraryPage } from '../pages/library/library';
+import { SearchPage } from '../pages/search/search';
+import { SettingsPage } from '../pages/settings/settings';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { LovePage } from '../pages/love/love';
+
+import {LoginPage} from '../pages/login/login';
+import {PlayerPage} from '../pages/player/player';
+import {SignupPage} from '../pages/signup/signup';
+import {UserPage} from '../pages/user/user';
+
+
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
     TabsPage,
-    LovePage
+    LibraryPage,
+    SearchPage,
+    SettingsPage,
+    LoginPage,
+    PlayerPage,
+    SignupPage,
+    UserPage,
+
   ],
   imports: [
     BrowserModule,
@@ -28,11 +39,14 @@ import { LovePage } from '../pages/love/love';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
     TabsPage,
-    LovePage
+    LibraryPage,
+    SearchPage,
+    SettingsPage,
+    LoginPage,
+    PlayerPage,
+    SignupPage,
+    UserPage,
   ],
   providers: [
     StatusBar,
