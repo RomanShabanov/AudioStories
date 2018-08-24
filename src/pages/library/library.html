@@ -1,11 +1,22 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title>
-            Library
-        </ion-title>
-    </ion-navbar>
-</ion-header>
+<ion-list>
 
-<ion-content padding>
 
-</ion-content>
+    <ion-item *ngFor = "let book of books">
+
+        <ion-thumbnail item-start>
+            {{ book.image }}
+        </ion-thumbnail>
+
+            <h2> {{ book.title }} </h2>
+            <p>
+                {{ book.author }}, {{ book.year }}
+
+            </p>
+    <button ion-button clear item-end>View</button>
+
+    </ion-item>
+</ion-list>
+
+
+
+

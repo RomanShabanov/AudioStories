@@ -115,14 +115,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var LibraryPage = /** @class */ (function () {
     function LibraryPage(navCtrl) {
         this.navCtrl = navCtrl;
+        this.books = [
+            { title: "Война и мир", year: 1863, autor: "Лев Толстой", image: "https://godliteratury.ru/wp-content/uploads/2015/12/voyna-i-mir.jpg" },
+            { title: "Вий", year: 1833, autor: "Николай Гоголь", image: "http://etextlib.ru/Content/BookImages/52571_titul_entrycopy.jpg" },
+            { title: "Мартин Иден", year: 1908, autor: "Джек Лондон", imgage: "https://irecommend.img.c3.r-99.com/sites/default/files/product-images/21875/dzhek_london__martin_iden.jpg" },
+            { title: "Портрет Дориана Грэя", year: 1890, autor: "Оскар Уайлд", image: "https://i1.rozetka.ua/goods/2449872/28944049_images_2449872905.jpg" },
+            { title: "Краткая история времени", year: 1988, autor: "Стивен Хокинг", image: "https://simg.marwin.kz/media/catalog/product/cache/c687aa7517cf01e65c009f6943c2b1e9/migrated/article/22319/41_tn3.jpg" },
+        ];
     }
     LibraryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-library',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/library/library.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n            Library\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n</ion-content>'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/library/library.html"*/
+            selector: 'page-library',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/library/library.html"*/'<ion-list>\n\n\n    <ion-item *ngFor = "let book of books">\n\n        <ion-thumbnail item-start>\n            {{ book.image }}\n        </ion-thumbnail>\n\n            <h2> {{ book.title }} </h2>\n            <p>\n                {{ book.author }}, {{ book.year }}\n\n            </p>\n    <button ion-button clear item-end>View</button>\n\n    </ion-item>\n</ion-list>\n\n\n\n\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/library/library.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object])
     ], LibraryPage);
     return LibraryPage;
+    var _a;
 }());
 
 //# sourceMappingURL=library.js.map
