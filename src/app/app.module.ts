@@ -12,12 +12,18 @@ import { SettingsPage } from '../pages/settings/settings';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import {LoginPage} from '../pages/login/login';
-import {PlayerPage} from '../pages/player/player';
-import {SignupPage} from '../pages/signup/signup';
-import {UserPage} from '../pages/user/user';
-
-
+import { LoginPage } from '../pages/login/login';
+import { PlayerPage } from '../pages/player/player';
+import { SignupPage } from '../pages/signup/signup';
+import { UserPage } from '../pages/user/user';
+import { BookPage } from '../pages/book/book';
+import { BooksProvider } from '../providers/books/books';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentsModule } from '../components/components.module';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { AngularFireModule } from "angularfire2";
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { firebaseConfig } from './db_credentials';
 
 @NgModule({
   declarations: [
@@ -30,11 +36,15 @@ import {UserPage} from '../pages/user/user';
     PlayerPage,
     SignupPage,
     UserPage,
-
+    BookPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    ComponentsModule,
+    HttpClientModule,
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,11 +57,14 @@ import {UserPage} from '../pages/user/user';
     PlayerPage,
     SignupPage,
     UserPage,
+    BookPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    ScreenOrientation,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    BooksProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
