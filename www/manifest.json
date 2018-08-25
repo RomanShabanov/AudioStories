@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "AudioStories",
+  "short_name": "AudioStories",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
