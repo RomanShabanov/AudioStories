@@ -1,4 +1,8 @@
-<!-- Generated template for the BookPreviewComponent component -->
-<div>
-  {{text}}
+<div class="book_preview">
+  <div class="book_preview__cover" [ngStyle]="{'background-image': 'url(' + book.cover + ')'}">
+    <div class="book_preview__cover__glance"></div>
+  </div>
+  <div class="book_preview__info">
+    <h3 class="book_preview__title" (click)="openBook()">{{book.title}}</h3>
+  </div>
 </div>

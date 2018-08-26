@@ -1,12 +1,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{book.title}}</ion-title>
+    <ion-title>{{ book.title }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <h1>{{ book.title }}</h1>
 
+  <div *ngFor="let file of bookFiles">
+    <span>{{ file.title }}</span>
+  </div>
 </ion-content>

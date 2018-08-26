@@ -23,7 +23,7 @@ import { ComponentsModule } from '../components/components.module';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { AngularFireModule } from "angularfire2";
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { firebaseConfig } from './db_credentials';
+import { firebaseConfig} from './db_credentials';
 
 @NgModule({
   declarations: [
