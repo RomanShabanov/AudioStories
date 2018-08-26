@@ -3,5 +3,4 @@ export interface Book {
     year: number;
     author: string;
     image: string;
-    id: number;
 }

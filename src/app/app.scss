@@ -11,26 +11,3 @@ h1, h2, h3, h4, h5, h6{
 h1{
     font-size: 3em;
 }
-
-.card {
-  background-color: #FFFFFF;
-  width: 400px;
-  height: 260px;
-  margin: 80px auto;
-  position: relative;
-
-  &::after {
-    $shadowIndent: 30px;
-
-    content: "";
-    display: block;
-    box-shadow: 0 2px 40px 0px rgba(0,0,0,0.2);
-    width: calc( 100% - 2 * #{$shadowIndent} );
-    height: 50%;
-    background-color: transparent;
-    position: absolute;
-    left: $shadowIndent;
-    bottom: 0;
-    z-index: -1;
-  }
-}

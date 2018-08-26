@@ -8,6 +8,15 @@ webpackJsonp([4],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_firestore__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(27);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,15 +29,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+;
 var BooksProvider = /** @class */ (function () {
     function BooksProvider(http, db) {
         this.http = http;
         this.db = db;
+        this.booksCollection = this.db.collection('books');
+        this.books = this.booksCollection.snapshotChanges().pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (actions) { return actions.map(function (a) {
+            var data = a.payload.doc.data();
+            var id = a.payload.doc.id;
+            return __assign({ id: id }, data);
+        }); }));
     }
     BooksProvider.prototype.getAll = function () {
-        this.db.collection('books').valueChanges().subscribe(function (books) {
-            console.log(JSON.stringify(books));
-        });
+        return this.books;
+    };
+    BooksProvider.prototype.getBook = function (bookId) {
+        return this.booksCollection.doc(bookId).valueChanges();
+    };
+    BooksProvider.prototype.getBookFiles = function (bookId) {
+        return this.booksCollection.doc(bookId).collection('files').snapshotChanges().pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["map"])(function (actions) { return actions.map(function (a) {
+            var data = a.payload.doc.data();
+            var id = a.payload.doc.id;
+            return __assign({ id: id }, data);
+        }); }));
     };
     BooksProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
@@ -142,9 +167,8 @@ var TabsPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LibraryPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__book_book__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_books_books__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_books_books__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -157,27 +181,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var LibraryPage = /** @class */ (function () {
-    function LibraryPage(navCtrl, Books) {
+    function LibraryPage(navCtrl, BooksProvider) {
+        var _this = this;
         this.navCtrl = navCtrl;
-        this.Books = Books;
-    }
-    LibraryPage.prototype.ngOnInit = function () {
-        this.Books.getAll();
-    };
-    LibraryPage.prototype.viewBook = function (bookId) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__book_book__["a" /* BookPage */], {
-            bookId: bookId
+        this.BooksProvider = BooksProvider;
+        this.BooksProvider.getAll().subscribe(function (books) {
+            _this.books = books;
         });
-    };
+    }
     LibraryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-library',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/library/library.html"*/'<ion-header>\n\n    <ion-navbar>\n        <ion-title>Library</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n    <h1>Библиотека</h1>\n\n    <book-preview *ngFor="let book of books" [book]="book"></book-preview>\n\n    <ion-list>\n        <ion-item *ngFor="let book of books" (click)="viewBook(book.id)">\n            <ion-thumbnail item-start>\n                <img src="{{ book.image }}">\n            </ion-thumbnail>\n            <h2> {{ book.title }} </h2>\n            <p>\n                {{ book.author }}, {{ book.year }}\n            </p>\n            <button ion-button clear item-end>View</button>\n        </ion-item>\n    </ion-list>\n\n    \n\n</ion-content>'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/library/library.html"*/
+            selector: 'page-library',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/library/library.html"*/'<ion-header>\n\n    <ion-navbar>\n        <ion-title>Library</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n    <h1>Библиотека</h1>\n\n    <book-preview *ngFor="let book of books" [book]="book"></book-preview>\n\n</ion-content>'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/library/library.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_books_books__["a" /* BooksProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]) === "function" && _b || Object])
     ], LibraryPage);
     return LibraryPage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=library.js.map
@@ -190,7 +210,7 @@ var LibraryPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_books_books__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -205,17 +225,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var BookPage = /** @class */ (function () {
-    function BookPage(navCtrl, navParams, Books) {
+    function BookPage(navCtrl, navParams, _books) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.Books = Books;
+        this._books = _books;
+        this.book = {};
+        this.bookFiles = [];
         this.bookId = navParams.get('bookId');
     }
     BookPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this._books.getBook(this.bookId).subscribe(function (book) {
+            _this.book = book;
+            console.log(book);
+        });
+        this._books.getBookFiles(this.bookId).subscribe(function (bookFiles) {
+            _this.bookFiles = bookFiles;
+            console.log(bookFiles);
+        });
     };
     BookPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-book',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/book/book.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{book.title}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/book/book.html"*/,
+            selector: 'page-book',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/book/book.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ book.title }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h1>{{ book.title }}</h1>\n\n  <div *ngFor="let file of bookFiles">\n    <span>{{ file.title }}</span>\n  </div>\n</ion-content>'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/book/book.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]) === "function" && _c || Object])
     ], BookPage);
@@ -233,7 +264,7 @@ var BookPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -268,7 +299,7 @@ var SearchPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -286,7 +317,7 @@ var SettingsPage = /** @class */ (function () {
     }
     SettingsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-settings',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/settings/settings.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n            Settings\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n</ion-content>'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/settings/settings.html"*/
+            selector: 'page-settings',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/settings/settings.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n            Settings\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    Settings\n\n</ion-content>'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/settings/settings.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
     ], SettingsPage);
@@ -303,7 +334,7 @@ var SettingsPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -348,7 +379,7 @@ var LoginPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlayerPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -393,7 +424,7 @@ var PlayerPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -438,7 +469,7 @@ var SignupPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -498,7 +529,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(450);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_library_library__ = __webpack_require__(270);
@@ -613,7 +644,7 @@ var AppModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(268);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(269);
@@ -667,6 +698,7 @@ var MyApp = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__book_preview_book_preview__ = __webpack_require__(480);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -675,13 +707,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 
 
+
 var ComponentsModule = /** @class */ (function () {
     function ComponentsModule() {
     }
     ComponentsModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [__WEBPACK_IMPORTED_MODULE_1__book_preview_book_preview__["a" /* BookPreviewComponent */]],
-            imports: [],
+            imports: [__WEBPACK_IMPORTED_MODULE_2__angular_common__["b" /* CommonModule */]],
             exports: [__WEBPACK_IMPORTED_MODULE_1__book_preview_book_preview__["a" /* BookPreviewComponent */]]
         })
     ], ComponentsModule);
@@ -698,6 +731,8 @@ var ComponentsModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookPreviewComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_book_book__ = __webpack_require__(271);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -708,22 +743,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var BookPreviewComponent = /** @class */ (function () {
-    function BookPreviewComponent() {
-        console.log(this.book);
-        this.text = 'Hello World';
+    function BookPreviewComponent(navCtrl) {
+        this.navCtrl = navCtrl;
     }
+    BookPreviewComponent.prototype.ngOnInit = function () {
+        console.log(this.book);
+    };
+    BookPreviewComponent.prototype.openBook = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__pages_book_book__["a" /* BookPage */], {
+            bookId: this.book.id
+        });
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
         __metadata("design:type", Object)
     ], BookPreviewComponent.prototype, "book", void 0);
     BookPreviewComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'book-preview',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/components/book-preview/book-preview.html"*/'<!-- Generated template for the BookPreviewComponent component -->\n<div>\n  {{text}}\n</div>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/components/book-preview/book-preview.html"*/
+            selector: 'book-preview',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/components/book-preview/book-preview.html"*/'<div class="book_preview">\n  <div class="book_preview__cover" [ngStyle]="{\'background-image\': \'url(\' + book.cover + \')\'}">\n    <div class="book_preview__cover__glance"></div>\n  </div>\n  <div class="book_preview__info">\n    <h3 class="book_preview__title" (click)="openBook()">{{book.title}}</h3>\n  </div>\n</div>'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/components/book-preview/book-preview.html"*/
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object])
     ], BookPreviewComponent);
     return BookPreviewComponent;
+    var _a;
 }());
 
 //# sourceMappingURL=book-preview.js.map

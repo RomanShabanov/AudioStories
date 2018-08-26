@@ -25780,24 +25780,65 @@ h1 {
   font-size: 3em;
 }
 
-.card {
+book-preview .book_preview {
   background-color: #FFFFFF;
-  width: 400px;
+  width: 170px;
   height: 260px;
   margin: 80px auto;
   position: relative;
 }
 
-.card::after {
-  content: "";
-  display: block;
-  -webkit-box-shadow: 0 2px 40px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 2px 40px 0px rgba(0, 0, 0, 0.2);
-  width: calc( 100% - 2 * 30px);
-  height: 50%;
-  background-color: transparent;
+book-preview .book_preview__cover {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+}
+
+book-preview .book_preview__cover:before, book-preview .book_preview__cover:after {
   position: absolute;
-  left: 30px;
-  bottom: 0;
+  content: "";
+  bottom: 12px;
+  left: 15px;
+  top: 80%;
+  width: 45%;
+  background: #999;
   z-index: -1;
+  -webkit-box-shadow: 0 20px 15px #999;
+  box-shadow: 0 20px 15px #999;
+  -webkit-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+}
+
+book-preview .book_preview__cover:after {
+  -webkit-transform: rotate(6deg);
+  transform: rotate(6deg);
+  right: 15px;
+  left: auto;
+}
+
+book-preview .book_preview__cover__glance {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  bottom: 0;
+  z-index: 1;
+  width: 3px;
+  background: rgba(0, 0, 0, 0.06);
+  -webkit-box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
+  box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
+}
+
+book-preview .book_preview__info {
+  text-align: center;
+  margin-top: 10px;
+}
+
+book-preview .book_preview__info__title {
+  font-size: 1.2em;
+  color: #444;
 }
