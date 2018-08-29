@@ -118,9 +118,9 @@ module.exports = webpackAsyncContext;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__library_library__ = __webpack_require__(456);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__search_search__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__settings_settings__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__search_search__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__settings_settings__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup_signup__ = __webpack_require__(272);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -136,9 +136,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var TabsPage = /** @class */ (function () {
     function TabsPage() {
-        this.tab1Root = __WEBPACK_IMPORTED_MODULE_1__library_library__["a" /* LibraryPage */];
-        this.tab2Root = __WEBPACK_IMPORTED_MODULE_2__search_search__["a" /* SearchPage */];
-        this.tab3Root = __WEBPACK_IMPORTED_MODULE_3__settings_settings__["a" /* SettingsPage */];
+        this.tab1Root = __WEBPACK_IMPORTED_MODULE_3__signup_signup__["a" /* SignupPage */];
+        this.tab2Root = __WEBPACK_IMPORTED_MODULE_1__search_search__["a" /* SearchPage */];
+        this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__settings_settings__["a" /* SettingsPage */];
     }
     TabsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Library" tabIcon="folder"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Search" tabIcon="search"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Settings" tabIcon="settings"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/tabs/tabs.html"*/
@@ -223,7 +223,7 @@ var SettingsPage = /** @class */ (function () {
     }
     SettingsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-settings',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/settings/settings.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>Settings</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list no-border>\n\n        <ion-list-header>\n            General\n        </ion-list-header>\n\n        <ion-item>\n            <ion-icon name=\'planet\' item-start></ion-icon>\n            Language\n            <ion-note item-end>\n                English\n            </ion-note>\n        </ion-item>\n\n        <ion-item>\n            <ion-toggle checked="false"></ion-toggle>\n            <ion-label>\n                Background sounds\n            </ion-label>\n            <ion-icon name=\'body\' item-start></ion-icon>\n        </ion-item>\n\n        <ion-item>\n            <ion-icon name=\'leaf\' item-start></ion-icon>\n            Herbology\n            <ion-icon name=\'rose\' item-end color="secondary"></ion-icon>\n        </ion-item>\n\n        <ion-item>\n            <ion-icon name=\'flask\' item-start></ion-icon>\n            Potions\n            <ion-note item-end>\n                Poisonous\n            </ion-note>\n        </ion-item>\n\n\n\n    </ion-list>\n\n\n    <ion-list>\n\n        <ion-list-header>\n            Activities\n        </ion-list-header>\n\n        <ion-item>\n            Incantation\n            <ion-icon name=\'color-wand\' item-start></ion-icon>\n            <ion-note item-end>Crucio!</ion-note>\n        </ion-item>\n\n        <ion-item>\n            <ion-toggle checked="true"></ion-toggle>\n            <ion-label>\n                Quidditch Practice\n            </ion-label>\n            <ion-icon name=\'brush\' item-start></ion-icon>\n        </ion-item>\n\n\n        <ion-item>\n            <ion-icon name=\'wine\' item-start></ion-icon>\n            Mead Drinking\n            <ion-note item-end>Yes please</ion-note>\n        </ion-item>\n\n\n    </ion-list>\n\n    <ion-list>\n\n        <ion-list-header>\n            Friends\n        </ion-list-header>\n\n        <ion-item>\n            <ion-icon name=\'flash\' item-start></ion-icon>\n            Harry\n            <ion-note item-end>The boy who lived</ion-note>\n        </ion-item>\n\n        <ion-item>\n            <ion-icon name=\'book\' item-start></ion-icon>\n            Hermoine\n            <ion-note item-end>Muggle-born</ion-note>\n        </ion-item>\n\n        <ion-item>\n            <ion-icon name=\'beer\' item-start></ion-icon>\n            Ron\n            <ion-note item-end>Brilliant!</ion-note>\n        </ion-item>\n\n\n    </ion-list>\n\n\n</ion-content>'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/settings/settings.html"*/
+            selector: 'page-settings',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/settings/settings.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Settings</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list no-border>\n\n    <ion-list-header>\n      General\n    </ion-list-header>\n\n    <ion-item>\n      <ion-icon name=\'planet\' item-start></ion-icon>\n      Language\n      <ion-note item-end>\n        English\n      </ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-toggle checked="false"></ion-toggle>\n      <ion-label>\n        Background sounds\n      </ion-label>\n      <ion-icon name=\'body\' item-start></ion-icon>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'leaf\' item-start></ion-icon>\n      Herbology\n      <ion-icon name=\'rose\' item-end color="secondary"></ion-icon>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'flask\' item-start></ion-icon>\n      Potions\n      <ion-note item-end>\n        Poisonous\n      </ion-note>\n    </ion-item>\n\n  </ion-list>\n\n  <ion-list>\n\n    <ion-list-header>\n      Activities\n    </ion-list-header>\n\n    <ion-item>\n      Incantation\n      <ion-icon name=\'color-wand\' item-start></ion-icon>\n      <ion-note item-end>Crucio!</ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-toggle checked="true"></ion-toggle>\n      <ion-label>\n        Quidditch Practice\n      </ion-label>\n      <ion-icon name=\'brush\' item-start></ion-icon>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'wine\' item-start></ion-icon>\n      Mead Drinking\n      <ion-note item-end>Yes please</ion-note>\n    </ion-item>\n\n  </ion-list>\n\n  <ion-list>\n\n    <ion-list-header>\n      Friends\n    </ion-list-header>\n\n    <ion-item>\n      <ion-icon name=\'flash\' item-start></ion-icon>\n      Harry\n      <ion-note item-end>The boy who lived</ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'book\' item-start></ion-icon>\n      Hermoine\n      <ion-note item-end>Muggle-born</ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'beer\' item-start></ion-icon>\n      Ron\n      <ion-note item-end>Brilliant!</ion-note>\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/settings/settings.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], SettingsPage);
@@ -262,7 +262,7 @@ var SignupPage = /** @class */ (function () {
     };
     SignupPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-signup',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/signup/signup.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Sign up</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Full Name</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Repeat Password</ion-label>\n      <ion-input type="password"></ion-input>\n    </ion-item>\n\n\n\n\n  </ion-list>\n\n  <button ion-button full>Signup</button>\n\n\n</ion-content>'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/signup/signup.html"*/,
+            selector: 'page-signup',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/signup/signup.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Sign up</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Full Name</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Repeat Password</ion-label>\n      <ion-input type="password"></ion-input>\n    </ion-item>\n\n  </ion-list>\n\n  <button ion-button full>Signup</button>\n\n</ion-content>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/signup/signup.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], SignupPage);
@@ -695,7 +695,6 @@ var IntroPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup_signup__ = __webpack_require__(272);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -707,7 +706,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
+/**
+ * Generated class for the LoginPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 var LoginPage = /** @class */ (function () {
     function LoginPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
@@ -716,17 +720,13 @@ var LoginPage = /** @class */ (function () {
     LoginPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad LoginPage');
     };
-    LoginPage.prototype.openSignUp = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__signup_signup__["a" /* SignupPage */]);
-    };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-login',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/login/login.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Sign In</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Username</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password"></ion-input>\n    </ion-item>\n\n  </ion-list>\n\n  <button ion-button full>Sign In</button>\n\n  <button ion-button icon-start full>\n    <ion-icon name="logo-facebook"></ion-icon>\n    Sign in with Facebook\n  </button>\n\n<button ion-button icon-start full>\n<ion-icon name="logo-googleplus"></ion-icon>\n  Sign in with Google\n</button>\n\n  <button ion-button full clear (click)="openSignUp()" v>Sign Up</button>\n\n</ion-content>'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/login/login.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], LoginPage);
     return LoginPage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=login.js.map

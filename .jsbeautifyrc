@@ -19,6 +19,7 @@
     "newline_between_rules": true
   },
   "html": {
-    "wrap_attributes":"auto"
+    "wrap_attributes": "auto",
+    "max_preserve_newlines": 1
   }
 }
