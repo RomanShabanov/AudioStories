@@ -5,6 +5,8 @@ import { LibraryPage } from '../library/library';
 import { SearchPage } from '../search/search';
 import { SettingsPage } from '../settings/settings';
 
+
+
 @Component({
   templateUrl: 'tabs.html'
 })

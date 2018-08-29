@@ -1,18 +1,40 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title>Sign In</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <button ion-button full>Sign In</button>
+
+  <button ion-button icon-start full>
+    <ion-icon name="logo-facebook"></ion-icon>
+    Sign in with Facebook
+  </button>
+
+<button ion-button icon-start full>
+<ion-icon name="logo-googleplus"></ion-icon>
+  Sign in with Google
+</button>
+
+  <button ion-button full clear (click)="openSignUp()" v>Sign Up</button>
 
 </ion-content>
