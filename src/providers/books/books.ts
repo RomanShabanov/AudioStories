@@ -1,10 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Book } from '../../models/books.interface';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 export interface BookId extends Book { id: string };
 
@@ -21,10 +17,14 @@ export class BooksProvider {
   }
 
   getBook(bookId) {
-    return {};
+    return this.http.get<Book[]>(this.serverUrl + '/books/' + bookId)
   }
 
 
-  search(value) {
+  search(query) {
+    let params = new HttpParams();
+    params = params.append('title', query.title);
+
+    return this.http.get<Book[]>(this.serverUrl + '/books', { params });
   }
 }

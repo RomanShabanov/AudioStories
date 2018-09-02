@@ -14,16 +14,16 @@ export class SearchPage {
 
     }
 
-    getItems(value) {
+    getItems(title) {
 
         const loader = this.loadingCtrl.create({
             content: "Please wait..."
         });
 
-        if (value) {
+        if (title) {
             loader.present();
 
-            this.BooksProvider.search(value).subscribe(books => {
+            this.BooksProvider.search({ title }).subscribe(books => {
                 console.log(books);
 
                 this.books = books;

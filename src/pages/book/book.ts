@@ -19,12 +19,7 @@ export class BookPage {
     this._books.getBook(this.bookId).subscribe(book => {
       this.book = book;
       console.log(book);
-    })
-
-    this._books.getBookFiles(this.bookId).subscribe(bookFiles => {
-      this.bookFiles = bookFiles;
-      console.log(bookFiles);
-    })
+    });
   }
 
 }

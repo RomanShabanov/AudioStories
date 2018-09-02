@@ -157,14 +157,14 @@ var SearchPage = /** @class */ (function () {
         this.BooksProvider = BooksProvider;
         this.books = [];
     }
-    SearchPage.prototype.getItems = function (value) {
+    SearchPage.prototype.getItems = function (title) {
         var _this = this;
         var loader = this.loadingCtrl.create({
             content: "Please wait..."
         });
-        if (value) {
+        if (title) {
             loader.present();
-            this.BooksProvider.search(value).subscribe(function (books) {
+            this.BooksProvider.search({ title: title }).subscribe(function (books) {
                 console.log(books);
                 _this.books = books;
                 loader.dismiss();
@@ -178,9 +178,10 @@ var SearchPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-search',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/search/search.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Search\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n  <ion-searchbar (ionInput)="getItems($event.target.value)"></ion-searchbar>\n\n  <book-preview *ngFor="let book of books" [book]="book"></book-preview>\n\n</ion-content>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/search/search.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]) === "function" && _c || Object])
     ], SearchPage);
     return SearchPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=search.js.map
@@ -296,18 +297,15 @@ var BookPage = /** @class */ (function () {
             _this.book = book;
             console.log(book);
         });
-        this._books.getBookFiles(this.bookId).subscribe(function (bookFiles) {
-            _this.bookFiles = bookFiles;
-            console.log(bookFiles);
-        });
     };
     BookPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-book',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/book/book.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ book.title }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h1>{{ book.title }}</h1>\n\n  <div *ngFor="let file of bookFiles">\n    <span>{{ file.title }}</span>\n  </div>\n</ion-content>'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/book/book.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]) === "function" && _c || Object])
     ], BookPage);
     return BookPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=book.js.map
@@ -806,9 +804,12 @@ var BooksProvider = /** @class */ (function () {
         return this.http.get(this.serverUrl + '/books');
     };
     BooksProvider.prototype.getBook = function (bookId) {
-        return {};
+        return this.http.get(this.serverUrl + '/books/' + bookId);
     };
-    BooksProvider.prototype.search = function (value) {
+    BooksProvider.prototype.search = function (query) {
+        var params = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpParams */]();
+        params = params.append('title', query.title);
+        return this.http.get(this.serverUrl + '/books', { params: params });
     };
     BooksProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
