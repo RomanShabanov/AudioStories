@@ -31,7 +31,7 @@ export class BooksProvider {
     return this.booksCollection.doc(bookId).valueChanges();
   }
 
-  getBookFiles(bookId){
+  getBookFiles(bookId) {
     return this.booksCollection.doc(bookId).collection('files').snapshotChanges().pipe(map(actions => actions.map(a => {
       const data = a.payload.doc.data() as Book;
       const id = a.payload.doc.id;
@@ -39,4 +39,11 @@ export class BooksProvider {
     })))
   }
 
+  search(value) {
+    return this.db.collection('books', ref => ref.where('title', 'array-contains', value)).snapshotChanges().pipe(map(actions => actions.map(a => {
+      const data = a.payload.doc.data() as Book;
+      const id = a.payload.doc.id;
+      return { id, ...data }
+    })))
+  }
 }

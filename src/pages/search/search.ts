@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
+import { BooksProvider } from '../../providers/books/books';
 
 @Component({
     selector: 'page-search',
@@ -7,21 +8,32 @@ import { NavController, LoadingController } from 'ionic-angular';
 })
 export class SearchPage {
 
-    constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
+    books = [];
+
+    constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private BooksProvider: BooksProvider) {
 
     }
 
-    getItems(value){
-        this.presentLoading();
-        console.log(value);
-    }
+    getItems(value) {
 
-    presentLoading() {
         const loader = this.loadingCtrl.create({
-            content: "Please wait...",
-            duration: 3000
+            content: "Please wait..."
         });
-        loader.present();
-    }
 
+        if (value) {
+            loader.present();
+
+            this.BooksProvider.search(value).subscribe(books => {
+                console.log(books);
+
+                this.books = books;
+
+                loader.dismiss();
+            });
+
+        } else {
+            this.books = [];
+        }
+
+    }
 }

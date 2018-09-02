@@ -1,14 +1,15 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>
-            Search
-        </ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>
+      Search
+    </ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-<ion-searchbar (ionInput)="getItems($event.target.value)"></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event.target.value)"></ion-searchbar>
 
+  <book-preview *ngFor="let book of books" [book]="book"></book-preview>
 
 </ion-content>

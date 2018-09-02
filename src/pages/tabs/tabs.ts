@@ -12,7 +12,6 @@ import { SettingsPage } from '../settings/settings';
 })
 export class TabsPage {
 
-
   tab1Root = LibraryPage;
   tab2Root = SearchPage;
   tab3Root = SettingsPage;
