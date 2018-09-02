@@ -14,6 +14,9 @@ export class LibraryPage {
 
     constructor(public navCtrl: NavController, private BooksProvider: BooksProvider) {
         this.BooksProvider.getAll().subscribe(books => {
+
+            console.log(books);
+
             this.books = books;
         });
     }

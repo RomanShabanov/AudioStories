@@ -11,39 +11,20 @@ export interface BookId extends Book { id: string };
 @Injectable()
 export class BooksProvider {
 
-  private booksCollection: AngularFirestoreCollection<Book>;
-  books: Observable<Book[]>;
+  private serverUrl: string = "http://localhost:3000";
+  constructor(public http: HttpClient) {
 
-  constructor(public http: HttpClient, private db: AngularFirestore) {
-    this.booksCollection = this.db.collection<BookId>('books');
-    this.books = this.booksCollection.snapshotChanges().pipe(map(actions => actions.map(a => {
-      const data = a.payload.doc.data() as Book;
-      const id = a.payload.doc.id;
-      return { id, ...data }
-    })))
   }
 
   getAll() {
-    return this.books;
+    return this.http.get<Book[]>(this.serverUrl + '/books')
   }
 
   getBook(bookId) {
-    return this.booksCollection.doc(bookId).valueChanges();
+    return {};
   }
 
-  getBookFiles(bookId) {
-    return this.booksCollection.doc(bookId).collection('files').snapshotChanges().pipe(map(actions => actions.map(a => {
-      const data = a.payload.doc.data() as Book;
-      const id = a.payload.doc.id;
-      return { id, ...data }
-    })))
-  }
 
   search(value) {
-    return this.db.collection('books', ref => ref.where('title', 'array-contains', value)).snapshotChanges().pipe(map(actions => actions.map(a => {
-      const data = a.payload.doc.data() as Book;
-      const id = a.payload.doc.id;
-      return { id, ...data }
-    })))
   }
 }
