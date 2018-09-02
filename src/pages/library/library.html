@@ -1,15 +1,23 @@
 <ion-header>
 
-    <ion-navbar>
-        <ion-title>Library</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>Library</ion-title>
+  </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
 
-    <h1>Библиотека</h1>
+  <h1>Библиотека</h1>
 
-    <book-preview *ngFor="let book of books" [book]="book"></book-preview>
+  <ion-slides pager slidesPerView="2" spaceBetween="30" centeredSlides="false">
+
+    <ion-slide *ngFor="let book of books" style="background-color: green; height: 220px;">
+      <book-preview [book]="book"></book-preview>
+    </ion-slide>
+
+  </ion-slides>
+
+<!-- ADD SUGGESTION HERE (https://dribbble.com/shots/4387632-5M-books-Shop-iOS-Application/attachments/998477) -->
 
 </ion-content>
