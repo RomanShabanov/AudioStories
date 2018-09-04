@@ -15,6 +15,24 @@ export class LibraryPage {
 
     books: Book[];
 
+
+    suggestedbooks = [
+        { title: 'roman', },
+        { title: 'horror', },
+        { title: 'fairytale', },
+        { title: 'history', },
+
+
+
+    ]
+
+
+
+
+
+
+
+
     constructor(public navCtrl: NavController, private BooksProvider: BooksProvider) {
         this.BooksProvider.getAll().subscribe(books => {
 

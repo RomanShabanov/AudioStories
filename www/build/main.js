@@ -112,6 +112,12 @@ var LibraryPage = /** @class */ (function () {
         var _this = this;
         this.navCtrl = navCtrl;
         this.BooksProvider = BooksProvider;
+        this.suggestedbooks = [
+            { title: 'roman', },
+            { title: 'horror', },
+            { title: 'fairytale', },
+            { title: 'history', },
+        ];
         this.BooksProvider.getAll().subscribe(function (books) {
             console.log(books);
             _this.books = books;
@@ -119,15 +125,16 @@ var LibraryPage = /** @class */ (function () {
     }
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Slides */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Slides */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Slides */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Slides */]) === "function" && _a || Object)
     ], LibraryPage.prototype, "slides", void 0);
     LibraryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-library',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/library/library.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Library</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <h1>Библиотека</h1>\n\n  <ion-slides pager slidesPerView="2" spaceBetween="30" centeredSlides="false">\n\n    <ion-slide *ngFor="let book of books" style="background-color: green; height: 220px;">\n      <book-preview [book]="book"></book-preview>\n    </ion-slide>\n\n  </ion-slides>\n\n  <ion-list>\n    <ion-item>\n      SUGGESTION\n      <button ion-button clear icon-end item-end color="dark">\n        See all\n        <ion-icon name="arrow-forward"></ion-icon>\n\n      </button>\n    </ion-item>\n  </ion-list>\n\n  <ion-list>\n    <ion-item>\n      <button ion-button color="dark" outline icon-end>Dark Outline\n        <ion-icon name="arrow-forward"></ion-icon>\n      </button>\n      <button ion-button item-end color="dark" outline icon-end>Dark outline\n        <ion-icon name="arrow-forward"></ion-icon>\n      </button>\n    </ion-item>\n\n    <ion-item>\n      <button ion-button color="dark" outline icon-end>Dark Outline\n        <ion-icon name="arrow-forward"></ion-icon>\n      </button>\n      <button ion-button item-end color="dark" outline icon-end>Dark Outline\n        <ion-icon name="arrow-forward"></ion-icon>\n      </button>\n    </ion-item>\n\n  </ion-list>\n\n  <!-- ADD SUGGESTION HERE (https://dribbble.com/shots/4387632-5M-books-Shop-iOS-Application/attachments/998477) -->\n\n</ion-content>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/library/library.html"*/
+            selector: 'page-library',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/library/library.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Library</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <h1>Библиотека</h1>\n\n  <ion-slides pager slidesPerView="2" spaceBetween="30" centeredSlides="false">\n\n    <ion-slide *ngFor="let book of books" style="background-color: green; height: 220px;">\n      <book-preview [book]="book"></book-preview>\n    </ion-slide>\n\n  </ion-slides>\n\n  <ion-list>\n    <ion-item>\n      SUGGESTION\n      <button ion-button clear icon-end item-end color="dark">\n        See all\n        <ion-icon name="arrow-forward"></ion-icon>\n\n      </button>\n    </ion-item>\n  </ion-list>\n\n  <ion-grid>\n\n    <ion-row>\n      <ion-col>\n\n        <button ion-button *ngFor="let suggest of suggestedbooks" large color="dark" outline icon-end>{{ suggest.title }}\n          <ion-icon name="arrow-forward"></ion-icon>\n        </button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <!-- ADD SUGGESTION HERE (https://dribbble.com/shots/4387632-5M-books-Shop-iOS-Application/attachments/998477) -->\n\n</ion-content>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/library/library.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]) === "function" && _c || Object])
     ], LibraryPage);
     return LibraryPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=library.js.map
