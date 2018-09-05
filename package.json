@@ -1,5 +1,5 @@
 {
-  "name": "myApp",
+  "name": "AudioStories",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
@@ -8,7 +8,8 @@
     "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint"
+    "lint": "ionic-app-scripts lint",
+    "dev": "pm2 start ecosystem.config.js"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",
@@ -27,9 +28,11 @@
     "@ionic/storage": "2.1.3",
     "angularfire2": "^5.0.0-rc.10",
     "cordova-plugin-screen-orientation": "^3.0.1",
+    "express": "^4.16.3",
     "firebase": "^5.1.0",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
+    "mongodb": "^3.1.4",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",
     "sw-toolbox": "3.6.0",

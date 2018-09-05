@@ -25782,7 +25782,6 @@ h1 {
 
 book-preview .book_preview {
   background-color: #FFFFFF;
-  width: 170px;
   height: 260px;
   margin: 80px auto;
   position: relative;
@@ -25841,4 +25840,8 @@ book-preview .book_preview__info {
 book-preview .book_preview__info__title {
   font-size: 1.2em;
   color: #444;
+}
+
+page-library ion-slide {
+  width: 40% !important;
 }
