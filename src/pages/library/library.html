@@ -18,32 +18,23 @@
 
   </ion-slides>
 
-  <ion-list>
-    <ion-item>
-      SUGGESTION
-      <button ion-button clear icon-end item-end color="dark">
-        See all
-        <ion-icon name="arrow-forward"></ion-icon>
-
-      </button>
-    </ion-item>
-  </ion-list>
-
   <ion-grid>
-
     <ion-row>
       <ion-col>
-
-        <button ion-button *ngFor="let suggest of suggestedbooks" large color="dark" outline icon-end>{{ suggest.title }}
-          <ion-icon name="arrow-forward"></ion-icon>
-        </button>
-
+        <h3>Suggestions</h3>
       </ion-col>
-
+      <ion-col col-auto>
+        <button ion-button clear icon-end item-end color="dark">See all <ion-icon name="arrow-forward"></ion-icon></button>
+      </ion-col>
     </ion-row>
-
   </ion-grid>
 
-  <!-- ADD SUGGESTION HERE (https://dribbble.com/shots/4387632-5M-books-Shop-iOS-Application/attachments/998477) -->
+  <ion-row>
+
+    <button ion-button *ngFor="let suggest of suggestedbooks" large color="dark" outline icon-end>{{ suggest.title }}
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+
+  </ion-row>
 
 </ion-content>
