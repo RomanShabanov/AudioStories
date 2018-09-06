@@ -25842,6 +25842,10 @@ book-preview .book_preview__info__title {
   color: #444;
 }
 
-page-library ion-slide {
+page-library ion-slides {
+  height: 300px;
+}
+
+page-library ion-slides ion-slide {
   width: 40% !important;
 }

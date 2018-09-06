@@ -1,5 +1,11 @@
 const express = require( 'express' )
-const app = express()
+const app = express();
+
+var bodyParser = require( 'body-parser' )
+app.use( bodyParser.json() );
+app.use( bodyParser.urlencoded( {
+  extended: true
+} ) );
 
 app.use( function( req, res, next ) {
   res.setHeader( 'Access-Control-Allow-Origin', 'http://localhost:8100' );
@@ -65,6 +71,65 @@ app.get( '/books/:id', ( req, res ) => {
     res.status( 200 ).json( book[ 0 ] )
   } else {
     res.status( 400 ).json( { message: 'Book is missing.' } )
+  }
+
+} )
+
+let categories = [
+  { id: 1, title: "Боевики.Триллеры" },
+  { id: 2, title: "Детективы" },
+  { id: 3, title: "Драматургия" },
+  { id: 4, title: "Историческая проза" },
+  { id: 5, title: "Классическая проза" },
+  { id: 6, title: "Литература на иностранных языках" },
+  { id: 7, title: "Любовный роман" },
+  { id: 8, title: "Поэзия" },
+  { id: 9, title: "Приключенческая литература" },
+  { id: 10, title: "Сентиментальная проза" },
+  { id: 11, title: "Современная проза" },
+  { id: 12, title: "Фантастика" },
+  { id: 13, title: "Фэнтези" },
+  { id: 14, title: "Эзотерическая художественная литература" },
+  { id: 15, title: "Эпос.Фольклор.Афоризмы" },
+  { id: 16, title: "Юмор и сатира" },
+];
+
+app.get( '/categories', ( req, res ) => {
+  res.status( 200 ).json( categories )
+} )
+
+app.post( '/categories', ( req, res ) => {
+
+  let category = {
+    id: categories[ categories.length - 1 ].id + 1,
+    title: req.body.title
+  }
+
+  categories.push( category );
+} )
+
+app.delete( '/categories/:id', ( req, res ) => {
+  categories = categories.filter( category => category.id !== +req.params.id );
+} )
+
+app.put( '/categories/:id', ( req, res ) => {
+  categories = categories.filter( category => {
+
+    if ( category.id === +req.params.id ) {
+      category.title = req.body.title;
+    }
+
+    return category;
+  } );
+} )
+
+app.get( '/categories/:id', ( req, res ) => {
+  let category = categories.filter( category => category.id === +req.params.id );
+
+  if ( category[ 0 ] ) {
+    res.status( 200 ).json( category[ 0 ] )
+  } else {
+    res.status( 400 ).json( { message: 'Category is missing.' } )
   }
 
 } )

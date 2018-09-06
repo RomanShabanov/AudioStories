@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 import { BooksProvider } from '../../providers/books/books';
-
 import { Book } from '../../models/books.interface';
 
 @Component({
@@ -13,21 +12,17 @@ export class LibraryPage {
 
     @ViewChild(Slides) slides: Slides;
 
-    books: Book[];
-
-    suggestedbooks: {
-        title: string
-    }[] = [
-            { title: 'roman', },
-            { title: 'horror', },
-            { title: 'fairytale', },
-            { title: 'history', },
-        ]
+    books;
+    categories;
 
     constructor(public navCtrl: NavController, private BooksProvider: BooksProvider) {
-        this.BooksProvider.getAll().subscribe(books => {
+        this.BooksProvider.getBooks().subscribe(books => {
             this.books = books;
         });
+
+        this.BooksProvider.getCategories().subscribe(categories => {
+            this.categories = categories
+        })
 
     }
 

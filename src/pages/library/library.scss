@@ -1,5 +1,9 @@
 page-library {
- ion-slide {
-  width: 40% !important;
- }
+    ion-slides {
+        height: 300px;
+
+        ion-slide {
+            width: 40% !important;
+        }
+    }
 }
