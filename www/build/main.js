@@ -112,14 +112,11 @@ var LibraryPage = /** @class */ (function () {
         var _this = this;
         this.navCtrl = navCtrl;
         this.BooksProvider = BooksProvider;
-        this.suggestedbooks = [
-            { title: 'roman', },
-            { title: 'horror', },
-            { title: 'fairytale', },
-            { title: 'history', },
-        ];
-        this.BooksProvider.getAll().subscribe(function (books) {
+        this.BooksProvider.getBooks().subscribe(function (books) {
             _this.books = books;
+        });
+        this.BooksProvider.getCategories().subscribe(function (categories) {
+            _this.categories = categories;
         });
     }
     __decorate([
@@ -128,7 +125,7 @@ var LibraryPage = /** @class */ (function () {
     ], LibraryPage.prototype, "slides", void 0);
     LibraryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-library',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/library/library.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Library</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <h1>Библиотека</h1>\n\n  <ion-slides pager slidesPerView="2" spaceBetween="30" centeredSlides="false">\n\n    <ion-slide *ngFor="let book of books" style="background-color: green; height: 220px;">\n      <book-preview [book]="book"></book-preview>\n    </ion-slide>\n\n  </ion-slides>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <h3>Suggestions</h3>\n      </ion-col>\n      <ion-col col-auto>\n        <button ion-button clear icon-end item-end color="dark">See all <ion-icon name="arrow-forward"></ion-icon></button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-row>\n\n    <button ion-button *ngFor="let suggest of suggestedbooks" large color="dark" outline icon-end>{{ suggest.title }}\n      <ion-icon name="arrow-forward"></ion-icon>\n    </button>\n\n  </ion-row>\n\n</ion-content>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/library/library.html"*/
+            selector: 'page-library',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/library/library.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Library</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <h1>Библиотека</h1>\n\n  <ion-slides pager slidesPerView="2" spaceBetween="30" centeredSlides="false">\n\n    <ion-slide *ngFor="let book of books" style="background-color: green; height: 220px;">\n      <book-preview [book]="book"></book-preview>\n    </ion-slide>\n\n  </ion-slides>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <h3>Suggestions</h3>\n      </ion-col>\n      <ion-col col-auto>\n        <button ion-button clear icon-end item-end color="dark">See all <ion-icon name="arrow-forward"></ion-icon></button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-row>\n\n    <button ion-button *ngFor="let category of categories" large color="dark" outline icon-end>{{ category.title }}\n      <ion-icon name="arrow-forward"></ion-icon>\n    </button>\n\n  </ion-row>\n\n</ion-content>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/library/library.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]) === "function" && _c || Object])
     ], LibraryPage);
@@ -802,14 +799,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-;
 var BooksProvider = /** @class */ (function () {
     function BooksProvider(http) {
         this.http = http;
         this.serverUrl = "http://localhost:3000";
     }
-    BooksProvider.prototype.getAll = function () {
+    BooksProvider.prototype.getBooks = function () {
         return this.http.get(this.serverUrl + '/books');
+    };
+    BooksProvider.prototype.getCategories = function () {
+        return this.http.get(this.serverUrl + '/categories');
     };
     BooksProvider.prototype.getBook = function (bookId) {
         return this.http.get(this.serverUrl + '/books/' + bookId);
@@ -821,9 +820,10 @@ var BooksProvider = /** @class */ (function () {
     };
     BooksProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
     ], BooksProvider);
     return BooksProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=books.js.map

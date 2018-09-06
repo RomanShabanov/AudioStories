@@ -2,8 +2,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Book } from '../../models/books.interface';
 
-export interface BookId extends Book { id: string };
-
 @Injectable()
 export class BooksProvider {
 
@@ -12,19 +10,22 @@ export class BooksProvider {
 
   }
 
-  getAll() {
+  getBooks() {
     return this.http.get<Book[]>(this.serverUrl + '/books')
   }
 
-  getBook(bookId) {
-    return this.http.get<Book[]>(this.serverUrl + '/books/' + bookId)
+  getCategories() {
+    return this.http.get(this.serverUrl + '/categories');
   }
 
+  getBook(bookId) {
+    return this.http.get(this.serverUrl + '/books/' + bookId)
+  }
 
   search(query) {
     let params = new HttpParams();
     params = params.append('title', query.title);
 
-    return this.http.get<Book[]>(this.serverUrl + '/books', { params });
+    return this.http.get(this.serverUrl + '/books', { params });
   }
 }
