@@ -2,7 +2,7 @@ module.exports = {
   apps: [ {
     name: 'API',
     script: 'server/index.js',
-    watch: true,
+    watch: [ 'server' ],
     env: {
       NODE_ENV: 'development'
     },

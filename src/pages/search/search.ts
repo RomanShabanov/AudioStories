@@ -24,10 +24,7 @@ export class SearchPage {
             loader.present();
 
             this.BooksProvider.search({ title }).subscribe(books => {
-                console.log(books);
-
                 this.books = books;
-
                 loader.dismiss();
             });
 

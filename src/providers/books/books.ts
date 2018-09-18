@@ -11,7 +11,7 @@ export class BooksProvider {
   }
 
   getBooks() {
-    return this.http.get<Book[]>(this.serverUrl + '/books')
+    return this.http.get(this.serverUrl + '/books');
   }
 
   getCategories() {
@@ -26,6 +26,12 @@ export class BooksProvider {
     let params = new HttpParams();
     params = params.append('title', query.title);
 
-    return this.http.get(this.serverUrl + '/books', { params });
+    return this.http.get<Book[]>(this.serverUrl + '/books', { params });
   }
+
+  getAuthors() {
+    return this.http.get(this.serverUrl + '/authors')
+  }
+
+
 }

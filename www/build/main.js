@@ -75,7 +75,7 @@ var TabsPage = /** @class */ (function () {
         this.tab3Root = __WEBPACK_IMPORTED_MODULE_3__settings_settings__["a" /* SettingsPage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Library" tabIcon="folder"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Search" tabIcon="search"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Settings" tabIcon="settings"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/tabs/tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Library" tabIcon="folder"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Search" tabIcon="search"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Settings" tabIcon="settings"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/tabs/tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -118,19 +118,21 @@ var LibraryPage = /** @class */ (function () {
         this.BooksProvider.getCategories().subscribe(function (categories) {
             _this.categories = categories;
         });
+        this.BooksProvider.getAuthors().subscribe(function (authors) {
+            _this.authors = authors;
+        });
     }
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Slides */]),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Slides */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Slides */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Slides */])
     ], LibraryPage.prototype, "slides", void 0);
     LibraryPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-library',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/library/library.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Library</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <h1>Библиотека</h1>\n\n  <ion-slides pager slidesPerView="2" spaceBetween="30" centeredSlides="false">\n\n    <ion-slide *ngFor="let book of books" style="background-color: green; height: 220px;">\n      <book-preview [book]="book"></book-preview>\n    </ion-slide>\n\n  </ion-slides>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <h3>Suggestions</h3>\n      </ion-col>\n      <ion-col col-auto>\n        <button ion-button clear icon-end item-end color="dark">See all <ion-icon name="arrow-forward"></ion-icon></button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-row>\n\n    <button ion-button *ngFor="let category of categories" large color="dark" outline icon-end>{{ category.title }}\n      <ion-icon name="arrow-forward"></ion-icon>\n    </button>\n\n  </ion-row>\n\n</ion-content>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/library/library.html"*/
+            selector: 'page-library',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/library/library.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Library</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <h1>Библиотека</h1>\n\n  <ion-slides pager slidesPerView="2" spaceBetween="30" centeredSlides="false">\n\n    <ion-slide *ngFor="let book of books" style="background-color: green; height: 220px;">\n      <book-preview [book]="book"></book-preview>\n    </ion-slide>\n\n  </ion-slides>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <h3>Suggestions</h3>\n      </ion-col>\n      <ion-col col-auto>\n        <button ion-button clear icon-end item-end color="dark">See all <ion-icon name="arrow-forward"></ion-icon></button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-row>\n\n    <button ion-button *ngFor="let category of categories" large color="dark" outline icon-end>{{ category.title }}\n      <ion-icon name="arrow-forward"></ion-icon>\n    </button>\n\n  </ion-row>\n\n</ion-content>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/library/library.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]])
     ], LibraryPage);
     return LibraryPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=library.js.map
@@ -172,7 +174,6 @@ var SearchPage = /** @class */ (function () {
         if (title) {
             loader.present();
             this.BooksProvider.search({ title: title }).subscribe(function (books) {
-                console.log(books);
                 _this.books = books;
                 loader.dismiss();
             });
@@ -183,11 +184,12 @@ var SearchPage = /** @class */ (function () {
     };
     SearchPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-search',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/search/search.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Search\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n  <ion-searchbar (ionInput)="getItems($event.target.value)"></ion-searchbar>\n\n  <book-preview *ngFor="let book of books" [book]="book"></book-preview>\n\n</ion-content>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/search/search.html"*/
+            selector: 'page-search',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/search/search.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Search\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n  <ion-searchbar (ionInput)="getItems($event.target.value)"></ion-searchbar>\n\n  <book-preview *ngFor="let book of books" [book]="book"></book-preview>\n\n</ion-content>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/search/search.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]) === "function" && _c || Object])
     ], SearchPage);
     return SearchPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=search.js.map
@@ -218,7 +220,7 @@ var SettingsPage = /** @class */ (function () {
     }
     SettingsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-settings',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/settings/settings.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Settings</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list no-border>\n\n    <ion-list-header>\n      General\n    </ion-list-header>\n\n    <ion-item>\n      <ion-icon name=\'planet\' item-start></ion-icon>\n      Language\n      <ion-note item-end>\n        English\n      </ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-toggle checked="false"></ion-toggle>\n      <ion-label>\n        Background sounds\n      </ion-label>\n      <ion-icon name=\'body\' item-start></ion-icon>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'leaf\' item-start></ion-icon>\n      Herbology\n      <ion-icon name=\'rose\' item-end color="secondary"></ion-icon>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'flask\' item-start></ion-icon>\n      Potions\n      <ion-note item-end>\n        Poisonous\n      </ion-note>\n    </ion-item>\n\n  </ion-list>\n\n  <ion-list>\n\n    <ion-list-header>\n      Activities\n    </ion-list-header>\n\n    <ion-item>\n      Incantation\n      <ion-icon name=\'color-wand\' item-start></ion-icon>\n      <ion-note item-end>Crucio!</ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-toggle checked="true"></ion-toggle>\n      <ion-label>\n        Quidditch Practice\n      </ion-label>\n      <ion-icon name=\'brush\' item-start></ion-icon>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'wine\' item-start></ion-icon>\n      Mead Drinking\n      <ion-note item-end>Yes please</ion-note>\n    </ion-item>\n\n  </ion-list>\n\n  <ion-list>\n\n    <ion-list-header>\n      Friends\n    </ion-list-header>\n\n    <ion-item>\n      <ion-icon name=\'flash\' item-start></ion-icon>\n      Harry\n      <ion-note item-end>The boy who lived</ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'book\' item-start></ion-icon>\n      Hermoine\n      <ion-note item-end>Muggle-born</ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'beer\' item-start></ion-icon>\n      Ron\n      <ion-note item-end>Brilliant!</ion-note>\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/settings/settings.html"*/
+            selector: 'page-settings',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/settings/settings.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Settings</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list no-border>\n\n    <ion-list-header>\n      General\n    </ion-list-header>\n\n    <ion-item>\n      <ion-icon name=\'planet\' item-start></ion-icon>\n      Language\n      <ion-note item-end>\n        English\n      </ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-toggle checked="false"></ion-toggle>\n      <ion-label>\n        Background sounds\n      </ion-label>\n      <ion-icon name=\'body\' item-start></ion-icon>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'leaf\' item-start></ion-icon>\n      Herbology\n      <ion-icon name=\'rose\' item-end color="secondary"></ion-icon>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'flask\' item-start></ion-icon>\n      Potions\n      <ion-note item-end>\n        Poisonous\n      </ion-note>\n    </ion-item>\n\n  </ion-list>\n\n  <ion-list>\n\n    <ion-list-header>\n      Activities\n    </ion-list-header>\n\n    <ion-item>\n      Incantation\n      <ion-icon name=\'color-wand\' item-start></ion-icon>\n      <ion-note item-end>Crucio!</ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-toggle checked="true"></ion-toggle>\n      <ion-label>\n        Quidditch Practice\n      </ion-label>\n      <ion-icon name=\'brush\' item-start></ion-icon>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'wine\' item-start></ion-icon>\n      Mead Drinking\n      <ion-note item-end>Yes please</ion-note>\n    </ion-item>\n\n  </ion-list>\n\n  <ion-list>\n\n    <ion-list-header>\n      Friends\n    </ion-list-header>\n\n    <ion-item>\n      <ion-icon name=\'flash\' item-start></ion-icon>\n      Harry\n      <ion-note item-end>The boy who lived</ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'book\' item-start></ion-icon>\n      Hermoine\n      <ion-note item-end>Muggle-born</ion-note>\n    </ion-item>\n\n    <ion-item>\n      <ion-icon name=\'beer\' item-start></ion-icon>\n      Ron\n      <ion-note item-end>Brilliant!</ion-note>\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/settings/settings.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], SettingsPage);
@@ -257,7 +259,7 @@ var SignupPage = /** @class */ (function () {
     };
     SignupPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-signup',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/signup/signup.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Sign up</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Full Name</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Repeat Password</ion-label>\n      <ion-input type="password"></ion-input>\n    </ion-item>\n\n  </ion-list>\n\n  <button ion-button full>Signup</button>\n\n</ion-content>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/signup/signup.html"*/,
+            selector: 'page-signup',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/signup/signup.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Sign up</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Full Name</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Repeat Password</ion-label>\n      <ion-input type="password"></ion-input>\n    </ion-item>\n\n  </ion-list>\n\n  <button ion-button full>Signup</button>\n\n</ion-content>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/signup/signup.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], SignupPage);
@@ -306,11 +308,12 @@ var BookPage = /** @class */ (function () {
     };
     BookPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-book',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/book/book.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ book.title }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h1>{{ book.title }}</h1>\n\n  <div *ngFor="let file of bookFiles">\n    <span>{{ file.title }}</span>\n  </div>\n</ion-content>'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/book/book.html"*/,
+            selector: 'page-book',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/book/book.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ book.title }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h1>{{ book.title }}</h1>\n\n  <div *ngFor="let file of bookFiles">\n    <span>{{ file.title }}</span>\n  </div>\n</ion-content>'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/book/book.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_books_books__["a" /* BooksProvider */]) === "function" && _c || Object])
     ], BookPage);
     return BookPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=book.js.map
@@ -351,7 +354,7 @@ var PlayerPage = /** @class */ (function () {
     };
     PlayerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-player',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/player/player.html"*/'<!--\n  Generated template for the PlayerPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>player</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/player/player.html"*/,
+            selector: 'page-player',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/player/player.html"*/'<!--\n  Generated template for the PlayerPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>player</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/player/player.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], PlayerPage);
@@ -396,7 +399,7 @@ var UserPage = /** @class */ (function () {
     };
     UserPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-user',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/user/user.html"*/'<!--\n  Generated template for the UserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>user</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/user/user.html"*/,
+            selector: 'page-user',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/user/user.html"*/'<!--\n  Generated template for the UserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>user</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/user/user.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], UserPage);
@@ -581,7 +584,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_screen_orientation__["a" /* ScreenOrientation */]])
     ], MyApp);
@@ -626,7 +629,7 @@ var IntroPage = /** @class */ (function () {
     };
     IntroPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-intro',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/intro/intro.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>intro</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-slides pager>\n\n    <ion-slide>\n      <h2>Slide 1</h2>\n    </ion-slide>\n\n    <ion-slide>\n      <h2>Slide 2</h2>\n    </ion-slide>\n\n    <ion-slide>\n      <h2>Slide 3</h2>\n    </ion-slide>\n\n  </ion-slides>\n\n</ion-content>'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/intro/intro.html"*/,
+            selector: 'page-intro',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/intro/intro.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>intro</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-slides pager>\n\n    <ion-slide>\n      <h2>Slide 1</h2>\n    </ion-slide>\n\n    <ion-slide>\n      <h2>Slide 2</h2>\n    </ion-slide>\n\n    <ion-slide>\n      <h2>Slide 3</h2>\n    </ion-slide>\n\n  </ion-slides>\n\n</ion-content>'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/intro/intro.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], IntroPage);
@@ -670,7 +673,7 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/pages/login/login.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Sign In</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Username</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password"></ion-input>\n    </ion-item>\n\n  </ion-list>\n\n  <button ion-button full>Sign In</button>\n\n  <button ion-button icon-start full>\n    <ion-icon name="logo-facebook"></ion-icon>\n    Sign in with Facebook\n  </button>\n\n<button ion-button icon-start full>\n<ion-icon name="logo-googleplus"></ion-icon>\n  Sign in with Google\n</button>\n\n  <button ion-button full clear (click)="openSignUp()" v>Sign Up</button>\n\n</ion-content>'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/pages/login/login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/pages/login/login.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Sign In</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Username</ion-label>\n      <ion-input type="text" value=""></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password"></ion-input>\n    </ion-item>\n\n  </ion-list>\n\n  <button ion-button full>Sign In</button>\n\n  <button ion-button icon-start full>\n    <ion-icon name="logo-facebook"></ion-icon>\n    Sign in with Facebook\n  </button>\n\n<button ion-button icon-start full>\n<ion-icon name="logo-googleplus"></ion-icon>\n  Sign in with Google\n</button>\n\n  <button ion-button full clear (click)="openSignUp()" v>Sign Up</button>\n\n</ion-content>'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/pages/login/login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], LoginPage);
@@ -753,7 +756,7 @@ var BookPreviewComponent = /** @class */ (function () {
     ], BookPreviewComponent.prototype, "book", void 0);
     BookPreviewComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'book-preview',template:/*ion-inline-start:"/Users/roman/Documents/AudioStories/src/components/book-preview/book-preview.html"*/'<div class="book_preview">\n  <div class="book_preview__cover" [ngStyle]="{\'background-image\': \'url(\' + book.cover + \')\'}">\n    <div class="book_preview__cover__glance"></div>\n  </div>\n  <div class="book_preview__info">\n    <h3 class="book_preview__title" (click)="openBook()">{{book.title}}</h3>\n  </div>\n</div>'/*ion-inline-end:"/Users/roman/Documents/AudioStories/src/components/book-preview/book-preview.html"*/
+            selector: 'book-preview',template:/*ion-inline-start:"/home/vadim/Documents/git/AudioStories/src/components/book-preview/book-preview.html"*/'<div class="book_preview">\n  <div class="book_preview__cover" [ngStyle]="{\'background-image\': \'url(\' + book.cover + \')\'}">\n    <div class="book_preview__cover__glance"></div>\n  </div>\n  <div class="book_preview__info">\n    <h3 class="book_preview__title" (click)="openBook()">{{book.title}}</h3>\n  </div>\n</div>'/*ion-inline-end:"/home/vadim/Documents/git/AudioStories/src/components/book-preview/book-preview.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], BookPreviewComponent);
@@ -817,6 +820,9 @@ var BooksProvider = /** @class */ (function () {
         var params = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpParams */]();
         params = params.append('title', query.title);
         return this.http.get(this.serverUrl + '/books', { params: params });
+    };
+    BooksProvider.prototype.getAuthors = function () {
+        return this.http.get(this.serverUrl + '/authors');
     };
     BooksProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),

@@ -14,6 +14,7 @@ export class LibraryPage {
 
     books;
     categories;
+    authors;
 
     constructor(public navCtrl: NavController, private BooksProvider: BooksProvider) {
         this.BooksProvider.getBooks().subscribe(books => {
@@ -22,6 +23,10 @@ export class LibraryPage {
 
         this.BooksProvider.getCategories().subscribe(categories => {
             this.categories = categories
+        })
+
+        this.BooksProvider.getAuthors().subscribe(authors => {
+            this.authors = authors
         })
 
     }

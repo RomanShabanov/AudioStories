@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { BooksProvider } from '../../providers/books/books';
+import { Book } from '../../models/books.interface';
 
 @Component({
   selector: 'page-book',
@@ -9,7 +10,7 @@ import { BooksProvider } from '../../providers/books/books';
 export class BookPage {
   bookId: string;
   book = {};
-  bookFiles = [];
+  bookFiles: Book[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _books: BooksProvider) {
     this.bookId = navParams.get('bookId');
