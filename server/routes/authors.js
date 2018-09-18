@@ -17,7 +17,7 @@ AuthorsRoutes.route( '/' )
       let filterAuthors = authors.filter( author => {
 
         Object.keys( req.query ).map( search => {
-          if ( author && author[ search ].toString().indexOf( req.query[ search ] ) < 0 ) {
+          if ( author && author[ search ] && author[ search ].toString().indexOf( req.query[ search ] ) < 0 ) {
             author = false;
           }
         } )
